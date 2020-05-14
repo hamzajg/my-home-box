@@ -1,0 +1,23 @@
+version: '3.7'
+
+services: 
+  webapi:
+    container_name: my-home-box-webapi
+    image: my-home-box/webapi
+    build: 
+      context: .
+      dockerfile: src/back/webapi/Dockerfile
+    environment: 
+      - ENV=development
+  
+  webapp:
+    container_name: my-home-box-webapp
+    image: my-home-box/webapp
+    build: 
+      context: .
+      dockerfile: src/front/webapp/Dockerfile
+    environment: 
+      - ENV=development
+    stdin_open: true
+    ports:
+      - 3000:3000
